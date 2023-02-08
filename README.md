@@ -9,3 +9,8 @@ ajouter
 
 dans macos/Runner/DebugProfile.entitlements
 et macos/Runner/Release.entitlements
+
+
+
+à creuser
+https://medium.com/flutter-community/flutterdesktop-and-c-7cd2e0106bd8

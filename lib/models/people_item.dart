@@ -1,6 +1,6 @@
 class PeopleItem {
   dynamic id;
-  String pseudo;
+  String name;
 
-  PeopleItem({this.id, required this.pseudo});
+  PeopleItem({this.id, required this.name});
 }

@@ -90,7 +90,7 @@ class _PeopleWidgetState extends State<PeoplesWidget> {
                                               color: Colors.red,
                                             ),
                                             title: Text(
-                                                peopleProvider.items[i].pseudo),
+                                                peopleProvider.items[i].name),
                                             trailing: IconButton(
                                                 icon: const Icon(Icons.delete,
                                                     color: Colors.red),

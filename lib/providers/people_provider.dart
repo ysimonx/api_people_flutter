@@ -7,34 +7,33 @@ import 'package:http/http.dart' as http;
 
 class PeopleProvider with ChangeNotifier {
   List<PeopleItem> _items = [];
-  final url = 'http://127.0.0.1:5000/people';
+  final url = 'http://127.0.0.1:5000/api/v1/people';
 
   List<PeopleItem> get items {
     return [..._items];
   }
 
-  Future<void> addPeople(String pseudo) async {
-    if (pseudo.isEmpty) {
+  Future<void> addPeople(String name) async {
+    if (name.isEmpty) {
       return;
     }
-    Map<String, dynamic> request = {"pseudo": pseudo};
+    Map<String, dynamic> request = {"name": name};
     final headers = {'Content-Type': 'application/json'};
     final response = await http.post(Uri.parse(url),
         headers: headers, body: json.encode(request));
     Map<String, dynamic> responsePayload = json.decode(response.body);
-    final people = PeopleItem(
-        id: responsePayload["id"], pseudo: responsePayload["pseudo"]);
+    final people =
+        PeopleItem(id: responsePayload["id"], name: responsePayload["name"]);
     _items.add(people);
     notifyListeners();
   }
 
   Future<void> get getPeoples async {
     try {
-      var response = await http.get(Uri.parse("$url/list"));
+      var response = await http.get(Uri.parse(url));
       List<dynamic> body = json.decode(response.body);
-      _items = body
-          .map((e) => PeopleItem(id: e['id'], pseudo: e['pseudo']))
-          .toList();
+      _items =
+          body.map((e) => PeopleItem(id: e['id'], name: e['name'])).toList();
     } catch (e) {
       print(e);
     }
@@ -60,7 +59,7 @@ class PeopleProvider with ChangeNotifier {
       for (var element in _items) {
         {
           if (element.id == responsePayload["id"]) {
-            element.pseudo = responsePayload["pseudo"];
+            element.name = responsePayload["name"];
           }
         }
       }
