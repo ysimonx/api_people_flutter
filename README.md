@@ -1,6 +1,6 @@
 # api_people_flutter
 
-This flutter PoC can be used with https://github.com/ysimonx/social-network-rest-api as Api Server
+This flutter PoC can be used with my repo : https://github.com/ysimonx/social-network-rest-api as a Rest Api Server
 
 > flutter pub add http
 
