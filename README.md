@@ -2,15 +2,17 @@
 
 This flutter PoC can be used with https://github.com/ysimonx/social-network-rest-api as Api Server
 
-flutter pub add http
-flutter pub add provider
+> flutter pub add http
+> flutter pub add provider
 
-ajouter
+add
 	<key>com.apple.security.network.client</key>
 	<true/>
 
-dans macos/Runner/DebugProfile.entitlements
-et macos/Runner/Release.entitlements
+
+in macos/Runner/DebugProfile.entitlements
+
+and macos/Runner/Release.entitlements
 
 
 
