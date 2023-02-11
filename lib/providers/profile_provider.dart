@@ -1,19 +1,19 @@
 import 'dart:convert';
 
-import 'package:api_people_flutter/models/people_item.dart';
+import 'package:api_people_flutter/models/profile_item.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class PeopleProvider with ChangeNotifier {
-  List<PeopleItem> _items = [];
-  final url = 'http://127.0.0.1:5000/api/v1/people';
+class ProfileProvider with ChangeNotifier {
+  List<ProfileItem> _items = [];
+  final url = 'http://127.0.0.1:5000/api/v1/profile';
 
-  List<PeopleItem> get items {
+  List<ProfileItem> get items {
     return [..._items];
   }
 
-  Future<void> addPeople(String name) async {
+  Future<void> addProfile(String name) async {
     if (name.isEmpty) {
       return;
     }
@@ -23,17 +23,17 @@ class PeopleProvider with ChangeNotifier {
         headers: headers, body: json.encode(request));
     Map<String, dynamic> responsePayload = json.decode(response.body);
     final people =
-        PeopleItem(id: responsePayload["id"], name: responsePayload["name"]);
+        ProfileItem(id: responsePayload["id"], name: responsePayload["name"]);
     _items.add(people);
     notifyListeners();
   }
 
-  Future<void> get getPeoples async {
+  Future<void> get getProfiles async {
     try {
       var response = await http.get(Uri.parse(url));
       List<dynamic> body = json.decode(response.body);
       _items =
-          body.map((e) => PeopleItem(id: e['id'], name: e['name'])).toList();
+          body.map((e) => ProfileItem(id: e['id'], name: e['name'])).toList();
     } catch (e) {
       print(e);
     }
@@ -41,7 +41,7 @@ class PeopleProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deletePeople(String peopleId) async {
+  Future<void> deleteProfile(String peopleId) async {
     try {
       var response = await http.delete(Uri.parse("$url/$peopleId"));
       final body = json.decode(response.body);

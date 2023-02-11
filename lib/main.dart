@@ -1,8 +1,9 @@
-import 'package:api_people_flutter/providers/people_provider.dart';
+import 'package:api_people_flutter/providers/profile_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:api_people_flutter/widgets/peoples.dart';
+import 'package:api_people_flutter/widgets/profiles.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,14 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-        value: PeopleProvider(),
+        value: ProfileProvider(),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: Colors.purple,
           ),
-          home: const MyHomePage(title: 'People API app'),
+          home: const MyHomePage(title: 'Profile API app'),
         ));
   }
 }
@@ -43,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: const PeoplesWidget(),
+      body: const ProfilesWidget(),
     );
   }
 }
