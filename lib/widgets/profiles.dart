@@ -24,34 +24,7 @@ class _ProfileWidgetState extends State<ProfilesWidget> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: TextFormField(
-                  controller: newTaskController,
-                  decoration: const InputDecoration(
-                    labelText: 'New Profile',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.amberAccent),
-                      foregroundColor:
-                          MaterialStateProperty.all(Colors.purple)),
-                  child: const Text("Add"),
-                  onPressed: () {
-                    Provider.of<ProfileProvider>(context, listen: false)
-                        .addProfile(newTaskController.text);
-                    newTaskController.clear();
-                  })
-            ],
-          ),
+          profilesHeader(context),
           FutureBuilder(
               future: Provider.of<ProfileProvider>(context, listen: false)
                   .getProfiles,
@@ -72,53 +45,24 @@ class _ProfileWidgetState extends State<ProfilesWidget> {
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
-                      builder: (ctx, profileProvider, child) => profileProvider
-                              .items.isEmpty
-                          ? child as Widget
-                          : Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.6,
-                                child: ListView.builder(
-                                    itemCount: profileProvider.items.length,
-                                    itemBuilder: (ctx, i) => Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 10.0),
-                                          child: ListTile(
-                                            tileColor: Colors.black12,
-                                            leading: const Icon(
-                                              Icons.arrow_back,
-                                              color: Colors.red,
-                                            ),
-                                            title: Text(
-                                              profileProvider.items[i].name,
-                                            ),
-                                            trailing: IconButton(
-                                                icon: const Icon(Icons.delete,
-                                                    color: Colors.red),
-                                                onPressed: () {
-                                                  ProfileItem p =
-                                                      profileProvider.items[i];
-                                                  profileProvider
-                                                      .deleteProfile(p.id);
-                                                }),
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        MyHomePage2(
-                                                          profile:
-                                                              profileProvider
-                                                                  .items[i],
-                                                        )),
-                                              );
-                                            },
-                                          ),
-                                        )),
-                              ),
-                            ),
+                      builder: (ctx, profileProvider, child) =>
+                          profileProvider.items.isEmpty
+                              ? child as Widget
+                              : Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.6,
+                                    child: ListView.builder(
+                                        itemCount: profileProvider.items.length,
+                                        itemBuilder: (ctx, i) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 10.0),
+                                              child: profilesTile(
+                                                  profileProvider, i, context),
+                                            )),
+                                  ),
+                                ),
                     );
                 }
 
@@ -126,6 +70,64 @@ class _ProfileWidgetState extends State<ProfilesWidget> {
               })
         ],
       ),
+    );
+  }
+
+  Row profilesHeader(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: TextFormField(
+            controller: newTaskController,
+            decoration: const InputDecoration(
+              labelText: 'New Profile',
+              border: OutlineInputBorder(),
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.amberAccent),
+                foregroundColor: MaterialStateProperty.all(Colors.purple)),
+            child: const Text("Add"),
+            onPressed: () {
+              Provider.of<ProfileProvider>(context, listen: false)
+                  .addProfile(newTaskController.text);
+              newTaskController.clear();
+            })
+      ],
+    );
+  }
+
+  ListTile profilesTile(
+      ProfileProvider profileProvider, int i, BuildContext context) {
+    return ListTile(
+      tileColor: Colors.black12,
+      leading: const Icon(
+        Icons.arrow_back,
+        color: Colors.red,
+      ),
+      title: Text(
+        profileProvider.items[i].name,
+      ),
+      trailing: IconButton(
+          icon: const Icon(Icons.delete, color: Colors.red),
+          onPressed: () {
+            ProfileItem p = profileProvider.items[i];
+            profileProvider.deleteProfile(p.id);
+          }),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MyHomePage2(
+                    profile: profileProvider.items[i],
+                  )),
+        );
+      },
     );
   }
 }
