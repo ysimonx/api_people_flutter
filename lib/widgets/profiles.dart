@@ -3,6 +3,8 @@ import 'package:api_people_flutter/models/profile_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../main2.dart';
+
 class ProfilesWidget extends StatefulWidget {
   const ProfilesWidget({Key? key}) : super(key: key);
 
@@ -90,7 +92,8 @@ class _ProfileWidgetState extends State<ProfilesWidget> {
                                               color: Colors.red,
                                             ),
                                             title: Text(
-                                                profileProvider.items[i].name),
+                                              profileProvider.items[i].name,
+                                            ),
                                             trailing: IconButton(
                                                 icon: const Icon(Icons.delete,
                                                     color: Colors.red),
@@ -100,7 +103,18 @@ class _ProfileWidgetState extends State<ProfilesWidget> {
                                                   profileProvider
                                                       .deleteProfile(p.id);
                                                 }),
-                                            onTap: () {},
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        MyHomePage2(
+                                                          profile:
+                                                              profileProvider
+                                                                  .items[i],
+                                                        )),
+                                              );
+                                            },
                                           ),
                                         )),
                               ),
