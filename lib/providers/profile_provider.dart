@@ -30,11 +30,8 @@ class ProfileProvider with ChangeNotifier {
 
   Future<void> get getProfiles async {
     try {
-      var response = await http.get(Uri.parse(url));
+      var response = await http.get(Uri.parse("$url?append_to_response=all"));
       _items = profileItemsFromJson(response.body);
-      // List<dynamic> body = json.decode(response.body);
-      //_items =
-      //    body.map((e) => ProfileItem(id: e['id'], name: e['name'])).toList();
     } catch (e) {
       print(e);
     }
