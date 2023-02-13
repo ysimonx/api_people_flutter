@@ -1,15 +1,15 @@
 import 'package:api_people_flutter/models/profile_item.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage2 extends StatefulWidget {
-  const MyHomePage2({super.key, required this.profile});
+class ProfileDetailWidget extends StatefulWidget {
+  const ProfileDetailWidget({super.key, required this.profile});
   final ProfileItem profile;
 
   @override
-  State<MyHomePage2> createState() => _MyHomePageState2();
+  State<ProfileDetailWidget> createState() => _ProfileDetailWidgetState();
 }
 
-class _MyHomePageState2 extends State<MyHomePage2> {
+class _ProfileDetailWidgetState extends State<ProfileDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

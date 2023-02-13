@@ -41,9 +41,9 @@ class ProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteProfile(String peopleId) async {
+  Future<void> deleteProfile(String profileId) async {
     try {
-      var response = await http.delete(Uri.parse("$url/$peopleId"));
+      var response = await http.delete(Uri.parse("$url/$profileId"));
       final body = json.decode(response.body);
       _items.removeWhere((element) => element.id == body["id"]);
     } catch (e) {
@@ -52,9 +52,9 @@ class ProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> executeTask(String peopleId) async {
+  Future<void> executeTask(String profileId) async {
     try {
-      final response = await http.patch(Uri.parse("$url/$peopleId"));
+      final response = await http.patch(Uri.parse("$url/$profileId"));
       Map<String, dynamic> responsePayload = json.decode(response.body);
       for (var element in _items) {
         {

@@ -1,9 +1,8 @@
 import 'package:api_people_flutter/providers/profile_provider.dart';
+import 'package:api_people_flutter/widgets/profile_list.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:api_people_flutter/widgets/profiles.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: const ProfilesWidget(),
+      body: const ProfileListWidget(),
     );
   }
 }

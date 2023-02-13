@@ -3,19 +3,19 @@ import 'package:api_people_flutter/models/profile_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../main2.dart';
+import 'profile_detail.dart';
 
-class ProfilesWidget extends StatefulWidget {
-  const ProfilesWidget({Key? key}) : super(key: key);
+class ProfileListWidget extends StatefulWidget {
+  const ProfileListWidget({Key? key}) : super(key: key);
 
   @override
-  State<ProfilesWidget> createState() => _ProfileWidgetState();
+  State<ProfileListWidget> createState() => _ProfileWidgetState();
 }
 
 // à creuser
 // https://github.com/archelangelo/flutter_lazy_listview
 
-class _ProfileWidgetState extends State<ProfilesWidget> {
+class _ProfileWidgetState extends State<ProfileListWidget> {
   TextEditingController newTaskController = TextEditingController();
 
   @override
@@ -123,7 +123,7 @@ class _ProfileWidgetState extends State<ProfilesWidget> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => MyHomePage2(
+              builder: (context) => ProfileDetailWidget(
                     profile: profileProvider.items[i],
                   )),
         );
