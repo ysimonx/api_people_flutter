@@ -19,4 +19,5 @@ and macos/Runner/Release.entitlements
 
 
 à creuser
+https://youtube.com/watch?v=YAoYJfitObA&si=EnSIkaIECMiOmarE&t=4577
 https://medium.com/flutter-community/flutterdesktop-and-c-7cd2e0106bd8
