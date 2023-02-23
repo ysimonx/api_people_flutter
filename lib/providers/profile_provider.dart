@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-import 'package:api_people_flutter/models/profile_item.dart';
+import 'package:api_people_flutter/models/profile_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
 class ProfileProvider with ChangeNotifier {
-  List<ProfileItem> _items = [];
+  List<Profile> _items = [];
   final url = 'http://127.0.0.1:5000/api/v1/profile';
 
-  List<ProfileItem> get items {
+  List<Profile> get items {
     return [..._items];
   }
 
@@ -23,7 +23,7 @@ class ProfileProvider with ChangeNotifier {
         headers: headers, body: json.encode(request));
     Map<String, dynamic> responsePayload = json.decode(response.body);
     final people =
-        ProfileItem(id: responsePayload["id"], name: responsePayload["name"]);
+        Profile(id: responsePayload["id"], name: responsePayload["name"]);
     _items.add(people);
     notifyListeners();
   }

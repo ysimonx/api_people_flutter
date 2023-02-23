@@ -1,5 +1,5 @@
 import 'package:api_people_flutter/providers/profile_provider.dart';
-import 'package:api_people_flutter/models/profile_item.dart';
+import 'package:api_people_flutter/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +41,7 @@ class _ProfileWidgetState extends State<ProfileListWidget> {
                       child: Center(
                         heightFactor: MediaQuery.of(context).size.height * 0.03,
                         child: const Text(
-                          'You have no tasks.',
+                          'You have no profile.',
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
@@ -116,7 +116,7 @@ class _ProfileWidgetState extends State<ProfileListWidget> {
       trailing: IconButton(
           icon: const Icon(Icons.delete, color: Colors.red),
           onPressed: () {
-            ProfileItem p = profileProvider.items[i];
+            Profile p = profileProvider.items[i];
             profileProvider.deleteProfile(p.id);
           }),
       onTap: () {

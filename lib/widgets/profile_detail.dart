@@ -1,9 +1,9 @@
-import 'package:api_people_flutter/models/profile_item.dart';
+import 'package:api_people_flutter/models/profile_model.dart';
 import 'package:flutter/material.dart';
 
 class ProfileDetailWidget extends StatefulWidget {
   const ProfileDetailWidget({super.key, required this.profile});
-  final ProfileItem profile;
+  final Profile profile;
 
   @override
   State<ProfileDetailWidget> createState() => _ProfileDetailWidgetState();
