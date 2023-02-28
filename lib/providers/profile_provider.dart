@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class ProfileProvider with ChangeNotifier {
   List<Profile> _items = [];
-  final url = 'http://127.0.0.1:5000/api/v1/profile';
+  final url = 'https://api-dev.onlyfemme.fr/api/v1/profile';
 
   List<Profile> get items {
     return [..._items];

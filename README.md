@@ -13,6 +13,14 @@ add
 	<true/>
 ```
 
+in order to enable desktop environments
+
+```
+flutter config --enable-windows-desktop
+flutter config --enable-macos-desktop
+flutter config --enable-linux-desktop
+```
+
 in macos/Runner/DebugProfile.entitlements
 
 and macos/Runner/Release.entitlements
