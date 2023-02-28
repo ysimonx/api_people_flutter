@@ -8,9 +8,10 @@ This flutter PoC can be used with my repo : https://github.com/ysimonx/social-ne
 > flutter pub add provider
 
 add
+'''
 	<key>com.apple.security.network.client</key>
 	<true/>
-
+'''
 
 in macos/Runner/DebugProfile.entitlements
 
